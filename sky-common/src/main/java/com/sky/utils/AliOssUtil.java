@@ -4,20 +4,25 @@ import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.OSSException;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.ByteArrayInputStream;
 
-@Data
-@AllArgsConstructor
-@Slf4j
 public class AliOssUtil {
+
+    private static final Logger log = LoggerFactory.getLogger(AliOssUtil.class);
 
     private String endpoint;
     private String accessKeyId;
     private String accessKeySecret;
     private String bucketName;
+
+    public AliOssUtil(String endpoint, String accessKeyId, String accessKeySecret, String bucketName) {
+        this.endpoint = endpoint;
+        this.accessKeyId = accessKeyId;
+        this.accessKeySecret = accessKeySecret;
+        this.bucketName = bucketName;
+    }
 
     /**
      * 文件上传
