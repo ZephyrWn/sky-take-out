@@ -11,12 +11,11 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @Slf4j
 public class RedisConfiguration {
     @Bean
-    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+    public RedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         log.info("开始创建redis模板对象...");
-        RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
+        RedisTemplate redisTemplate = new RedisTemplate();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         redisTemplate.setKeySerializer(new StringRedisSerializer());
-        redisTemplate.setValueSerializer(new StringRedisSerializer());
         return redisTemplate;
     }
 }
