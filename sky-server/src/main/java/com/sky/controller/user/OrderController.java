@@ -1,5 +1,9 @@
 package com.sky.controller.user;
 
+import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 import com.sky.dto.OrdersPaymentDTO;
 import com.sky.dto.OrdersSubmitDTO;
 import com.sky.result.PageResult;
@@ -22,6 +26,19 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @Api(tags = "C端订单接口")
 public class OrderController {
+
+    /**
+     * 用户催单
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/reminder/{id}")
+    @ApiOperation("用户催单")
+    public Result reminder(@PathVariable("id") Long id) {
+        orderService.reminder(id);
+        return Result.success();
+    }
 
     @Autowired
     private OrderService orderService;
