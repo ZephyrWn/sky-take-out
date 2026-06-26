@@ -31,6 +31,14 @@ public interface SetmealMapper {
     Integer countByCategoryId(Long id);
 
     /**
+     * 根据状态统计套餐数量
+     * @param status
+     * @return
+     */
+    @Select("select count(id) from setmeal where status = #{status}")
+    Integer countByStatus(Integer status);
+
+    /**
      * 套餐分页查询
      * @param setmealPageQueryDTO
      * @return

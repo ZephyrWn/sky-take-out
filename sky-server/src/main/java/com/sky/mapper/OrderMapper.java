@@ -5,6 +5,7 @@ import com.sky.dto.GoodsSalesDTO;
 import com.sky.dto.OrdersPageQueryDTO;
 import com.sky.entity.Orders;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -56,7 +57,7 @@ public interface OrderMapper {
      * @param orderTime
      */
     @Select("select * from orders where status = #{status} and order_time < #{orderTime}")
-    List<Orders> getByStatusAndOrdertimeLT(Integer status, LocalDateTime orderTime);
+    List<Orders> getByStatusAndOrdertimeLT(@Param("status") Integer status, @Param("orderTime") LocalDateTime orderTime);
     /**
      * 根据动态条件统计营业额
      * @param map
@@ -72,6 +73,5 @@ public interface OrderMapper {
      * @param begin
      * @param end
      */
-    List<GoodsSalesDTO> getSalesTop10(LocalDateTime begin, LocalDateTime end);
+    List<GoodsSalesDTO> getSalesTop10(@Param("begin") LocalDateTime begin, @Param("end") LocalDateTime end);
 }
-
